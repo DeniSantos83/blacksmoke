@@ -1,0 +1,297 @@
+/* Reset / basics */
+:root{
+  --bg:#0b0b0b;
+  --panel:#0f0f0f;
+  --accent:#d9d9d9;
+  --muted:#9a9a9a;
+}
+
+/* Page background with subtle smoke texture if provided */
+body{
+  background: radial-gradient(ellipse at center, rgba(255,255,255,0.02) 0%, transparent 40%), var(--bg);
+  color: var(--accent);
+  font-family: 'Montserrat', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.5;
+  padding-top:72px; /* navbar height */
+}
+
+/* Navbar */
+.navbar{
+  background: linear-gradient(180deg, rgba(0,0,0,0.7), rgba(10,10,10,0.55));
+  border-bottom:1px solid rgba(255,255,255,0.03);
+  backdrop-filter: blur(2px);
+  padding:0.6rem 0;
+}
+.logo-img{ width:44px; height:44px; object-fit:cover; border-radius:6px; }
+.band-name{
+  font-family: 'UnifrakturCook', serif;
+  font-size:1rem;
+  letter-spacing:0.5px;
+  color:#fff;
+}
+
+/* HERO */
+.hero{
+  min-height:70vh;
+  background: linear-gradient(180deg, rgba(117, 116, 116, 0.55), rgba(0,0,0,0.8));
+  display:flex;
+  align-items:center;
+  position:relative;
+  overflow:hidden;
+  padding:5rem 0;
+  text-shadow: 0 3px 20px rgba(0,0,0,0.7);
+}
+.hero::after{
+  /* optional smoke texture - place img/smoke.png in folder for nice effect */
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image: url("../img/smoke.png");
+  background-size:cover;
+  background-position:center;
+  opacity:0.08;
+  pointer-events:none;
+}
+.hero-logo{ max-width:220px; height:auto; filter:drop-shadow(0 8px 20px rgba(0,0,0,0.7)); animation: pulse 2s infinite; /* Nome da animação, duração e repetição */ }
+
+/* Fumaça suave no hero */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("../img/smoke.jpg") repeat;
+  background-size: cover;
+  opacity: 0.15;
+  animation: smokeMove 60s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+@keyframes smokeMove {
+  from { background-position: 0 0; }
+  to { background-position: 1000px 0; }
+}
+.hero > .container {
+  position: relative;
+  z-index: 2; /* garantir que o texto fique acima da fumaça */
+}
+
+/* Galeria com borda/sombra branca */
+.gallery-img {
+  border: 2px solid rgba(255,255,255,0.2);
+  box-shadow: 0 0 12px rgba(255,255,255,0.4);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.gallery-img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(255,255,255,0.7);
+}
+
+
+/* Typography for metal vibe */
+.band-title{
+  font-family: 'UnifrakturCook', serif;
+  font-size:2.25rem;
+  margin:0;
+  letter-spacing:0.6px;
+}
+.sub-title{
+  color:var(--muted);
+  font-size:1rem;
+}
+
+/* Buttons / socials */
+.socials .btn{ border-radius:8px; background:rgba(0,0,0,0.6); border:1px solid rgba(255,255,255,0.05); }
+.socials .btn:hover{ transform:translateY(-4px); transition:0.18s; }
+
+/* Sections */
+.section-title{
+  font-family: 'UnifrakturCook', serif;
+  font-size:1.8rem;
+  color: #fff;
+  margin-bottom:0.6rem;
+}
+.sub-section-title {
+  color: var(--accent); /* Cor principal do seu site */
+  font-size: 1.1rem; /* Tamanho da fonte um pouco maior */
+  font-weight: 500;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+/* Darker panels */
+.bg-darker{ background: linear-gradient(180deg, rgba(6,6,6,0.95), rgba(12,12,12,0.95)); }
+
+/* Music cards */
+.music-card{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:14px 18px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,0.05);
+  text-decoration:none;
+  color:var(--accent);
+  background:rgba(255,255,255,0.02);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+  font-weight:600;
+}
+.music-card span{ font-size:0.95rem; }
+
+.embed-player {
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+@media (max-width: 767px) {
+  /* Em telas pequenas, players ficam empilhados */
+  .row.justify-content-center.mb-5.g-4 .col-md-6 {
+    margin-bottom: 1.5rem;
+  }
+}
+
+
+/* Gallery */
+.carousel-item img{ max-height:560px; object-fit:cover; }
+
+/* Footer */
+footer{ background:linear-gradient(180deg,#070707, #0b0b0b); border-top:1px solid rgba(255,255,255,0.03); }
+
+/* Social icons in footer */
+.social-icons a{ color:var(--accent); margin-left:12px; text-decoration:none; opacity:0.95; }
+.social-icons a:hover{ transform:translateY(-4px); }
+
+/* Small screens adjustments */
+@media (max-width: 767px){
+  .hero{ padding:3.5rem 0; min-height:56vh; }
+  .band-title{ font-size:1.6rem; }
+  .hero-logo{ max-width:160px; }
+  .logo-img{ width:36px; height:36px; }
+  .navbar{ padding:0.5rem 0; }
+}
+
+/* Accessibility focus */
+a:focus, button:focus { outline: 3px solid rgba(255,255,255,0.06); outline-offset: 2px; }
+
+/* Efeito de hover nos links da navbar */
+.navbar-nav .nav-link {
+  position: relative;
+}
+
+.navbar-nav .nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 50%;
+  background-color: var(--accent);
+  transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+}
+
+.navbar-nav .nav-link:hover::after,
+.navbar-nav .nav-link.active::after {
+  width: 100%;
+  left: 0;
+}
+
+/* Linha decorativa abaixo dos títulos de seção */
+.section-title::after {
+  content: '';
+  display: block;
+  width: 60px; /* Largura da linha */
+  height: 2px;
+  background-color: var(--accent);
+  margin: 10px auto 20px auto; /* Centraliza a linha e dá espaçamento */
+}
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05); /* Aumenta o tamanho em 5% */
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Seção de Merch */
+.merch-card {
+    background: var(--panel); /* Usa sua cor de painel escuro */
+    border: 1px solid rgba(255,255,255,0.08); /* Borda sutil */
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    display: flex; /* Para garantir que o card preencha a altura da coluna */
+    flex-direction: column;
+}
+
+.merch-card:hover {
+    transform: translateY(-5px); /* Efeito sutil ao passar o mouse */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.7);
+}
+
+.merch-card .card-img-top {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    height: 300px; /* Altura fixa para as imagens */
+    object-fit: cover; /* Garante que a imagem preencha o espaço sem distorcer */
+    padding: 15px; /* Espaçamento interno para as imagens */
+    background-color: var(--bg); /* Fundo sutil para as imagens */
+}
+
+.merch-card .card-body {
+    padding: 1.5rem;
+    color: var(--accent);
+    flex-grow: 1; /* Faz o corpo do card crescer para preencher o espaço */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Espaçamento entre os elementos do corpo */
+}
+
+.merch-card .card-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #fff; /* Título do produto mais claro */
+    margin-bottom: 0.5rem;
+}
+
+.merch-card .card-text {
+    font-size: 0.9rem;
+    color: var(--muted); /* Descrição com cor mais suave */
+    flex-grow: 1; /* Permite que o texto da descrição empurre o preço e botão para baixo */
+}
+
+.merch-card .card-price {
+    font-size: 1.4rem;
+    color: #0d6efd; /* Exemplo de cor para o preço (azul do bootstrap) */
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.merch-card .btn-outline-light {
+    border-color: rgba(255,255,255,0.15);
+    color: #fff;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.merch-card .btn-outline-light:hover {
+    background-color: var(--accent);
+    color: var(--bg);
+    border-color: var(--accent);
+}
+
+/* Ajustes responsivos para imagens de merch */
+@media (max-width: 767px) {
+    .merch-card .card-img-top {
+        height: 250px; /* Reduz a altura das imagens em telas menores */
+    }
+}
+/* Força a visibilidade do botão de fechar do GLightbox */
+.glightbox-container .gclose {
+  color: #fff !important;
+  opacity: 1 !important;
+  z-index: 999999 !important; /* Adicionado !important para forçar a prioridade */
+}
+
